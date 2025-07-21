@@ -24,17 +24,14 @@ CLAY远程管理系统是一个基于Python和WebSocket技术开发的远程控�
 
 # 运行截图
 
-![image-20250721201732669](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20250721201732669.png)
+<img width="1919" height="973" alt="屏幕截图 2025-07-21 201729" src="https://github.com/user-attachments/assets/75d5afca-0a78-4942-b92a-87a1ad8071d9" />
+<img width="1919" height="971" alt="屏幕截图 2025-07-21 201828" src="https://github.com/user-attachments/assets/4dd86ad3-4fd0-4e36-a1bd-8cee26d6683e" />
+<img width="1918" height="974" alt="屏幕截图 2025-07-21 201849" src="https://github.com/user-attachments/assets/63795f02-49ca-403d-b957-5a17b848a249" />
+<img width="1919" height="967" alt="屏幕截图 2025-07-21 201908" src="https://github.com/user-attachments/assets/6550a27d-e1c3-4cb6-84c9-113767612c14" />
+<img width="1919" height="969" alt="屏幕截图 2025-07-21 201956" src="https://github.com/user-attachments/assets/82cf0ae6-9c8b-491c-88ed-30ec6993e7e8" />
 
-![image-20250721201758809](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20250721201758809.png)
 
-![image-20250721201830953](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20250721201830953.png)
 
-![image-20250721201852414](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20250721201852414.png)
-
-![image-20250721201911384](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20250721201911384.png)
-
-![image-20250721201959393](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20250721201959393.png)
 
 # 配置教程
 
@@ -137,7 +134,6 @@ cd client pyinstaller --onefile --noconsole --icon=YOURICON.ico client.py
 
 > [!WARNING]
 >
-> #### 重要提示！
 >
 > 此系统具有强大的远程控制功能，请注意以下安全事项：
 >
