@@ -33,11 +33,11 @@ CLAY 远程管理系统是一款基于 Python 与 WebSocket 技术栈开发的�
 
 | 功能场景     | 界面截图                                                     |
 | ------------ | ------------------------------------------------------------ |
-| **登录验证** | <img width="1920" height="975" alt="e1716a50d4600be86d0c4135502a6c83" src="https://github.com/user-attachments/assets/04840176-db0d-4d67-952e-997b10408aa7" />|
-| **设备列表** | ![3cfdc20bc7a39483d0f08c54c5ef69ae](D:\WeChat\xwechat_files\wxid_ju4olz5o2p7v22_4c86\temp\RWTemp\2025-07\3cfdc20bc7a39483d0f08c54c5ef69ae.png) |
-| **终端控制** | ![f39d6cfdc2f8faa4fb41e9b60ac3096e](D:\WeChat\xwechat_files\wxid_ju4olz5o2p7v22_4c86\temp\RWTemp\2025-07\f39d6cfdc2f8faa4fb41e9b60ac3096e.png) |
-| **内置指令** | ![55be683d7466e4539fabc92cfc298b7f](D:\WeChat\xwechat_files\wxid_ju4olz5o2p7v22_4c86\temp\RWTemp\2025-07\55be683d7466e4539fabc92cfc298b7f.png) |
-| **媒体监控** | ![cbc8957ba62300523debd875c14a3f3f](D:\WeChat\xwechat_files\wxid_ju4olz5o2p7v22_4c86\temp\RWTemp\2025-07\cbc8957ba62300523debd875c14a3f3f.png) |
+| **登录验证** | <img width="1920" height="975" alt="登录验证" src="https://github.com/user-attachments/assets/04840176-db0d-4d67-952e-997b10408aa7" />|
+| **设备列表** | <img width="1920" height="975" alt="设备列表" src="https://github.com/user-attachments/assets/dd5636ea-e08e-4cbc-b8de-d8ea53f77d0c" />|
+| **终端控制** | <img width="1920" height="975" alt="终端控制" src="https://github.com/user-attachments/assets/57d999c1-02d2-4aa3-a9a1-105dcd668c68" />|
+| **内置指令** | <img width="1920" height="975" alt="内置指令" src="https://github.com/user-attachments/assets/d0bc475f-c7cc-44c5-a0d8-87b575ad510e" />|
+| **媒体监控** | <img width="1920" height="975" alt="媒体监控" src="https://github.com/user-attachments/assets/5414cb1e-ae82-460b-93e0-2226f8afee6a" />|
 
 ##🛠️ 详细部署指南
 
