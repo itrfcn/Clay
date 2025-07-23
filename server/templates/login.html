@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>身份验证</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --hacker-green: #00ff41;
+            --hacker-dark: #0d0208;
+            --hacker-gray: #333333;
+            --hacker-light: #99ffbb;
+            --glow: 0 0 5px var(--hacker-green), 0 0 10px var(--hacker-green);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--hacker-dark);
+            color: var(--hacker-green);
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 数字雨背景效果 */
+        #matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(13, 2, 8, 0.8);
+            border: 1px solid var(--hacker-green);
+            padding: 3rem;
+            border-radius: 2px;
+            box-shadow: var(--glow);
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .login-container:hover {
+            box-shadow: 0 0 10px var(--hacker-green), 0 0 20px var(--hacker-green), 0 0 30px var(--hacker-green);
+            transform: translateY(-5px);
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 1px solid var(--hacker-green);
+            z-index: -1;
+            animation: scan 2s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.03); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 0.3; }
+        }
+
+        .login-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .login-header h2 {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            text-shadow: var(--glow);
+        }
+
+        .login-header .subtitle {
+            font-size: 0.9rem;
+            color: var(--hacker-light);
+            opacity: 0.7;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .form-control {
+            width: 100%;
+            background-color: var(--hacker-gray);
+            border: 1px solid var(--hacker-green);
+            color: var(--hacker-green);
+            padding: 0.8rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            box-shadow: var(--glow);
+            border-color: var(--hacker-light);
+        }
+
+        .form-control::placeholder {
+            color: var(--hacker-green);
+            opacity: 0.5;
+        }
+
+        .btn {
+            width: 100%;
+            background-color: transparent;
+            border: 1px solid var(--hacker-green);
+            color: var(--hacker-green);
+            padding: 0.8rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 255, 65, 0.1);
+            box-shadow: var(--glow);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .error-message {
+            color: #ff3e3e;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+            animation: blink 1s infinite alternate;
+        }
+
+        @keyframes blink {
+            from { opacity: 0.7; }
+            to { opacity: 1; }
+        }
+
+        .system-info {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            text-align: center;
+            opacity: 0.6;
+            line-height: 1.5;
+        }
+
+        /* 开源地址样式优化 */
+        .system-info a {
+            color: var(--hacker-green);
+            text-decoration: none;
+            position: relative;
+            padding: 0 2px;
+            transition: all 0.3s ease;
+        }
+
+        .system-info a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--hacker-green);
+            transition: width 0.3s ease;
+        }
+
+        .system-info a:hover {
+            color: var(--hacker-light);
+            text-shadow: var(--glow);
+        }
+
+        .system-info a:hover::after {
+            width: 100%;
+        }
+
+        .system-info a:active {
+            color: #fff;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1em;
+            background-color: var(--hacker-green);
+            animation: cursor-blink 1s infinite;
+        }
+
+        @keyframes cursor-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .key-indicator {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 0.7rem;
+            opacity: 0.5;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 576px) {
+            .login-container {
+                padding: 2rem 1.5rem;
+                margin: 0 1rem;
+            }
+
+            .login-header h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 数字雨背景画布 -->
+    <canvas id="matrix-bg"></canvas>
+
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>身份验证</h2>
+                <div class="subtitle">请输入访问密码<span class="cursor"></span></div>
+            </div>
+
+            <form method="POST" action="/">
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-key"></i> 访问密钥</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="请输入密钥..." required>
+                </div>
+
+                <button type="submit" class="btn">
+                    <i class="fas fa-unlock-alt"></i> 验证
+                </button>
+
+                {% if error %}
+                    <p class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i> {{ error }}
+                    </p>
+                {% endif %}
+            </form>
+
+            <div class="system-info">
+                <p>系统版本: v2.0</p>
+                <p><i class="fab fa-github"></i> <a href="https://github.com/itrfcn/Clay" target="_blank">开源仓库</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-indicator">
+        <i class="fas fa-shield-alt"></i> 安全连接已建立
+    </div>
+
+    <script>
+        // 数字雨背景效果
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+
+        // 设置画布尺寸
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // 数字雨字符
+        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰヱヲン';
+        const columns = Math.floor(canvas.width / 20);
+        const drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            // 半透明黑色覆盖，创建轨迹效果
+            ctx.fillStyle = 'rgba(13, 2, 8, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 设置文字样式
+            ctx.fillStyle = '#00ff41';
+            ctx.font = '15px Courier New';
+
+            // 绘制字符
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * 20, drops[i] * 20);
+
+                // 随机重置雨滴
+                if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+
+        // 动画循环
+        setInterval(drawMatrix, 35);
+
+        // 密码输入效果
+        const passwordInput = document.getElementById('password');
+        passwordInput.addEventListener('focus', () => {
+            document.querySelector('.subtitle').innerHTML = '正在等待输入...<span class="cursor"></span>';
+        });
+
+        passwordInput.addEventListener('blur', () => {
+            document.querySelector('.subtitle').innerHTML = '请输入访问密码<span class="cursor"></span>';
+        });
+    </script>
+</body>
+</html>
