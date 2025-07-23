@@ -39,7 +39,7 @@ CLAY 远程管理系统是一款基于 Python 与 WebSocket 技术栈开发的�
 | **内置指令** | <img width="1920" height="975" alt="内置指令" src="https://github.com/user-attachments/assets/d0bc475f-c7cc-44c5-a0d8-87b575ad510e" />|
 | **媒体监控** | <img width="1920" height="975" alt="媒体监控" src="https://github.com/user-attachments/assets/5414cb1e-ae82-460b-93e0-2226f8afee6a" />|
 
-##🛠️ 详细部署指南
+## 🛠️ 详细部署指南
 
 ### 服务器端部署
 
